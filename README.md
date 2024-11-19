@@ -22,3 +22,23 @@ Implementing tag-supported inputs involves handling cursor positions and content
 ### Example
 
 ![CleanShot 2024-11-19 at 16 23 59](https://github.com/user-attachments/assets/0902f193-c659-4feb-80ef-6001100ad019)
+
+
+## Install and Run
+#### Installation
+
+To install dependencies, run:
+
+```
+npm install
+```
+#### Run 
+To start the development server, run:
+
+```
+npm run dev
+```
+
+
+
+
