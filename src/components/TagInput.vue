@@ -25,11 +25,9 @@ import DropdownSelect from '@/components/DropdownSelect.vue'
 import TextEditor from '@/utils/TextEditor.js'
 import { debounce } from '@/utils/debounce.js'
 
-const availableTags = ['#liver', '#heart', '#lung', '#spleen', '#stomach']
-const dropdownTags = ref([])
-
 const editableElement = ref(null)
 const editor = ref(new TextEditor())
+const dropdownTags = ref([])
 const activeTag = ref(editor.value.activeTag)
 const isDropdownOpen = computed(() => dropdownTags.value.length > 0 && !!activeTag.value)
 
@@ -102,7 +100,7 @@ watch(activeTag, async (newValue, prevValue) => {
 const handleInput = debounce((e) => {
   editor.value.handleInput()
   activeTag.value = editor.value.activeTag
-}, 300)
+}, 200)
 
 const insertTag = (tag) => {
   editor.value.replaceWord(tag)
