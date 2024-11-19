@@ -1,25 +1,26 @@
 <template>
-  <div class="input-container" style="position: relative">
-    <div ref="inputRef" contenteditable="true" @input="handleInput" class="input-area"></div>
+  <div class="input-container">
+    <DropdownSelect :is-open="dropdownTags.length > 0" :options="dropdownTags" @select="insertTag">
+      <template #control>
+        <div ref="inputRef" class="input-area" contenteditable="true" @input="handleInput"></div>
+      </template>
 
-    <ul v-if="dropdownTags.length > 0" class="dropdown" style="">
-      <li
-        v-for="(tag, index) in dropdownTags"
-        :key="index"
-        @click="insertTag(tag)"
-        style="cursor: pointer; padding: 5px; background: #eee"
-      >
-        {{ tag }}
-      </li>
-    </ul>
+      <template #option="{ option }">
+        <div class="dropdown-item">
+          {{ option }}
+        </div>
+      </template>
+    </DropdownSelect>
   </div>
 </template>
 
 <script>
 import { ref } from 'vue'
+import DropdownSelect from '@/components/DropdownSelect.vue'
 
 export default {
   name: 'HashtagInput',
+  components: { DropdownSelect },
   setup() {
     const availableTags = ['#liver', '#heart', '#lung', '#spleen', '#stomach']
     const inputRef = ref(null)
@@ -123,8 +124,13 @@ export default {
   padding: 10px;
   font-size: 16px;
   line-height: 1.5;
-  min-height: 100px;
+  min-height: 10rem;
+  min-width: 24rem;
   outline: none;
   white-space: pre-wrap;
+}
+
+.dropdown-item {
+  background: blue;
 }
 </style>
