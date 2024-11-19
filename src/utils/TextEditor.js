@@ -72,8 +72,7 @@ export default class TextEditor {
     const wordAtCursor = this.findWordAtCursor(text, offset)
 
     if (wordAtCursor.startsWith('#')) {
-      const tag = wordAtCursor.slice(1) // Remove # symbol
-      this.activeTag = tag
+      this.activeTag = wordAtCursor.slice(1) // Remove # symbol
     } else {
       this.activeTag = ''
     }
@@ -83,14 +82,14 @@ export default class TextEditor {
 
   findWordAtCursor(text, cursorPosition) {
     // Find the word boundaries around the cursor
-    const beforeCursor = text.slice(0, cursorPosition).match(/[#\w]*$/)?.[0] || ''
-    const afterCursor = text.slice(cursorPosition).match(/^[#\w]*/)?.[0] || ''
+    const beforeCursor = text?.slice(0, cursorPosition).match(/[#\w]*$/)?.[0] || ''
+    const afterCursor = text?.slice(cursorPosition).match(/^[#\w]*/)?.[0] || ''
 
     return beforeCursor + afterCursor
   }
   replaceWord(tag) {
     const content = this.element.innerText
-    const updatedContent = content.replace(/#(\w*)$/, tag + ' ')
+    const updatedContent = content.replace(/#(\w*)$/, `#${tag}`)
     this.element.innerText = updatedContent
     this.activeTag = ''
 
